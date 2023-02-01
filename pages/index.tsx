@@ -92,7 +92,13 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const user_keywords_subscriptions_table = "upwork-user-keywords-table";
 
-  const client = new DynamoDBClient({ region: "us-west-2" });
+  const client = new DynamoDBClient({
+    region: "us-west-2",
+    credentials: {
+      accessKeyId: process.env.ACCESS_KEY!!,
+      secretAccessKey: process.env.SECRET_KEY!!,
+    },
+  });
   const command_input: ScanCommandInput = {
     TableName: user_keywords_subscriptions_table,
   };
