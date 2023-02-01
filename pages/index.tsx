@@ -105,7 +105,6 @@ export const getServerSideProps: GetServerSideProps<{
   const command = new ScanCommand(command_input);
   const response = await client.send(command);
   const subscriptions = { subscriptions: response.Items!! };
-
   return {
     props: {
       subscriptions,
