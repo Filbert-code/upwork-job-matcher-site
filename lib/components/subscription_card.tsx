@@ -64,7 +64,7 @@ export default function SubscriptionCard({
         <Stack spacing={1} textAlign="center">
           {results!!.length > 0 ? (
             results.reverse().map((result, i) => (
-              <Stack direction="row" spacing={0.5}>
+              <Stack key={i} direction="row" spacing={0.5}>
                 <Typography
                   variant="body1"
                   bgcolor="blue"
