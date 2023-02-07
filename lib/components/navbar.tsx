@@ -13,7 +13,7 @@ export default function NavBar(props: any) {
       width="100%"
       direction="row"
       justifyContent={showBackButton ? "space-between" : "center"}
-      bgcolor="black"
+      bgcolor="transparent"
       height={75}
       alignItems="center"
     >
@@ -27,7 +27,7 @@ export default function NavBar(props: any) {
         </IconButton>
       )}
       <Typography variant="h3" component="h1">
-        Upwork Job Matcher
+        Upwork Job Matcher/Notification System
       </Typography>
       {showBackButton && (
         <IconButton size="large" sx={{ color: "black" }} disabled>

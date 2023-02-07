@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { convertTimeToTimeSince } from "../helper_functions";
 
 type SubscriptionCardProps = {
@@ -26,7 +26,7 @@ export default function SubscriptionCard({
   const name = data.name.S;
   const keywords = data.keywords.L;
   const keywords_weights = data.keyword_weights.L;
-  const results = data.results.L!!;
+  const results = [...data.results.L!!].reverse();
 
   return (
     <Card
@@ -61,7 +61,7 @@ export default function SubscriptionCard({
         <Divider sx={{ marginBottom: 1 }} />
         <Stack spacing={1} textAlign="center">
           {results!!.length > 0 ? (
-            results.reverse().map((result, i) => (
+            results.map((result, i) => (
               <Stack key={i} direction="row" spacing={0.5}>
                 <Typography
                   variant="body1"
