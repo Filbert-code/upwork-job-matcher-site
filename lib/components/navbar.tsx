@@ -3,28 +3,25 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Typography from "@mui/material/Typography";
 import Hidden from "@mui/material/Hidden/Hidden";
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from "next/router";
 
-type NavBarProps = {
-  viewMatches: boolean;
-  setViewMatches: Dispatch<SetStateAction<boolean>>;
-};
-
-export default function NavBar(props: NavBarProps) {
-  const { viewMatches, setViewMatches } = props;
+export default function NavBar(props: any) {
+  const showBackButton = props.showBackButton;
+  const router = useRouter();
   return (
     <Stack
       width="100%"
       direction="row"
-      justifyContent={viewMatches ? "space-between" : "center"}
+      justifyContent={showBackButton ? "space-between" : "center"}
       bgcolor="black"
       height={75}
       alignItems="center"
     >
-      {viewMatches && (
+      {showBackButton && (
         <IconButton
           size="large"
           sx={{ color: "white" }}
-          onClick={() => setViewMatches(false)}
+          onClick={() => router.back()}
         >
           <ArrowBackIcon sx={{ fontSize: "40px" }} />
         </IconButton>
@@ -32,7 +29,7 @@ export default function NavBar(props: NavBarProps) {
       <Typography variant="h3" component="h1">
         Upwork Job Matcher
       </Typography>
-      {viewMatches && (
+      {showBackButton && (
         <IconButton size="large" sx={{ color: "black" }} disabled>
           <ArrowBackIcon sx={{ fontSize: "40px" }} />
         </IconButton>

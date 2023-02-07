@@ -20,6 +20,7 @@ import SubscriptionCard from "@/lib/components/subscription_card";
 import JobMatchCard from "@/lib/components/job_match_card";
 import { useState } from "react";
 import NavBar from "@/lib/components/navbar";
+import { ddb_client } from "@/lib/clients/dynamodb_client";
 
 export default function Home({
   subscriptions,
@@ -44,41 +45,19 @@ export default function Home({
       maxWidth={1500}
       margin="auto"
     >
-      <NavBar viewMatches={viewMatches} setViewMatches={setViewMatches} />
-      <Button
-        variant="contained"
-        size="large"
-        sx={{ fontSize: "30px" }}
-        onClick={() => console.log(subscriptions)}
-      >
-        Get Data from Database
-      </Button>
-      {!!!viewMatches ? (
-        <Stack
-          direction={{ sm: "column", md: "row" }}
-          spacing={{ sm: 2, md: 4 }}
-        >
-          {subscriptions.subscriptions.map((subscription, i) => {
-            return (
-              <SubscriptionCard
-                key={i}
-                data={subscription}
-                setViewMatches={handleSetViewMatches}
-                index={i}
-              />
-            );
-          })}
-        </Stack>
-      ) : (
-        <Stack spacing={{ xs: 2, sm: 2, md: 4 }} width="100%">
-          {subscriptions.subscriptions
-            .reverse()
-            [viewMatchesIndex].results.L!!.reverse()
-            .map((match, i) => {
-              return <JobMatchCard key={i} attribute_data={match} />;
-            })}
-        </Stack>
-      )}
+      <NavBar showBackButton={false} />
+      <Stack direction={{ sm: "column", md: "row" }} spacing={{ sm: 2, md: 4 }}>
+        {subscriptions.subscriptions.map((subscription, i) => {
+          return (
+            <SubscriptionCard
+              key={i}
+              data={subscription}
+              setViewMatches={handleSetViewMatches}
+              index={i}
+            />
+          );
+        })}
+      </Stack>
     </Box>
   );
 }
@@ -92,13 +71,7 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
   const user_keywords_subscriptions_table = "upwork-user-keywords-table";
 
-  const client = new DynamoDBClient({
-    region: "us-west-2",
-    credentials: {
-      accessKeyId: process.env.ACCESS_KEY!!,
-      secretAccessKey: process.env.SECRET_KEY!!,
-    },
-  });
+  const client = ddb_client;
   const command_input: ScanCommandInput = {
     TableName: user_keywords_subscriptions_table,
   };

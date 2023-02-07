@@ -97,7 +97,7 @@ export default function SubscriptionCard({
         </Stack>
       </CardContent>
       <CardActions sx={{ justifyContent: "center", marginBottom: 1 }}>
-        <Link href={""}>
+        <Link href={`/view-matches/${name}`}>
           <Button
             size="large"
             variant="contained"
