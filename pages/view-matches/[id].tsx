@@ -13,7 +13,7 @@ import { Key } from "react";
 
 export default function ViewMatches({ data }: any) {
   console.log(data);
-  const results = data.results.L!!;
+  const results = [...data.results.L!!].reverse();
   return (
     <Box maxWidth={1500}>
       <NavBar showBackButton={true} />
