@@ -15,7 +15,7 @@ export default function ViewMatches({ data }: any) {
   console.log(data);
   const results = data.results.L!!.reverse();
   return (
-    <Box>
+    <Box maxWidth={1500}>
       <NavBar showBackButton={true} />
       <Stack spacing={{ xs: 2, sm: 2, md: 4 }} width="100%">
         {results.map((match: AttributeValue, i: Key | null | undefined) => {
@@ -32,6 +32,10 @@ export async function getStaticPaths() {
   const client = ddb_client;
   const command_input: ScanCommandInput = {
     TableName: user_keywords_subscriptions_table,
+    ProjectionExpression: "#pk_name",
+    ExpressionAttributeNames: {
+      "#pk_name": "name",
+    },
   };
   const command = new ScanCommand(command_input);
   const response = await client.send(command);

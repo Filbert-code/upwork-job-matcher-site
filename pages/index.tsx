@@ -25,15 +25,6 @@ import { ddb_client } from "@/lib/clients/dynamodb_client";
 export default function Home({
   subscriptions,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const [viewMatches, setViewMatches] = useState(false);
-  const [viewMatchesIndex, setViewMatchesIndex] = useState(0);
-
-  function handleSetViewMatches(index: number) {
-    console.log("index: " + index);
-    setViewMatchesIndex(index);
-    setViewMatches(true);
-  }
-
   return (
     <Box
       display="flex"
@@ -48,14 +39,7 @@ export default function Home({
       <NavBar showBackButton={false} />
       <Stack direction={{ sm: "column", md: "row" }} spacing={{ sm: 2, md: 4 }}>
         {subscriptions.subscriptions.map((subscription, i) => {
-          return (
-            <SubscriptionCard
-              key={i}
-              data={subscription}
-              setViewMatches={handleSetViewMatches}
-              index={i}
-            />
-          );
+          return <SubscriptionCard key={i} data={subscription} index={i} />;
         })}
       </Stack>
     </Box>

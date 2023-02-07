@@ -16,13 +16,11 @@ import { convertTimeToTimeSince } from "../helper_functions";
 
 type SubscriptionCardProps = {
   data: Record<string, AttributeValue>;
-  setViewMatches: (index: number) => void;
   index: number;
 };
 
 export default function SubscriptionCard({
   data,
-  setViewMatches,
   index,
 }: SubscriptionCardProps) {
   const name = data.name.S;
@@ -98,11 +96,7 @@ export default function SubscriptionCard({
       </CardContent>
       <CardActions sx={{ justifyContent: "center", marginBottom: 1 }}>
         <Link href={`/view-matches/${name}`}>
-          <Button
-            size="large"
-            variant="contained"
-            onClick={() => setViewMatches(index)}
-          >
+          <Button size="large" variant="contained">
             View Matches
           </Button>
         </Link>
