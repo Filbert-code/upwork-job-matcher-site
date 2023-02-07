@@ -87,7 +87,11 @@ export default function JobMatchCard({ attribute_data }: JobMatchCardProps) {
         </Grid>
       </CardContent>
       <CardActions sx={{ justifyContent: "center", marginBottom: 1 }}>
-        <Button size="large" variant="contained">
+        <Button
+          size="large"
+          variant="contained"
+          href={`${data.job_data.M!!.url.S}`}
+        >
           View Posting
         </Button>
       </CardActions>
