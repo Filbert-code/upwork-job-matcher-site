@@ -34,12 +34,13 @@ export default function SubscriptionCard({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        bgcolor: "primary.main",
       }}
     >
       <CardContent sx={{ maxWidth: 450 }}>
         <Typography
           variant="h3"
-          color="black"
+          color="mint.main"
           marginBottom={2}
           textAlign="center"
         >
@@ -62,15 +63,15 @@ export default function SubscriptionCard({
         <Stack spacing={1} textAlign="center">
           {results!!.length > 0 ? (
             results.map((result, i) => (
-              <Stack key={i} direction="row" spacing={0.5}>
+              <Stack key={i} direction="row" spacing={0.25}>
                 <Typography
                   variant="body1"
-                  bgcolor="blue"
-                  borderRadius={2}
+                  bgcolor="mint.main"
                   padding={1}
-                  color="white"
+                  color="primary.main"
                   key={i}
                   width="80%"
+                  sx={{ borderTopLeftRadius: 5, borderBottomLeftRadius: 5 }}
                 >
                   {result.M!!.job_data.M!!.title.S}
                 </Typography>
@@ -78,8 +79,11 @@ export default function SubscriptionCard({
                   textAlign="left"
                   padding={1}
                   width="20%"
-                  bgcolor="lightcoral"
-                  borderRadius={2}
+                  bgcolor="secondary.main"
+                  sx={{
+                    borderTopRightRadius: 5,
+                    borderBottomRightRadius: 5,
+                  }}
                 >
                   <Typography variant="body2" key={i} color="white">
                     {convertTimeToTimeSince(
@@ -96,7 +100,7 @@ export default function SubscriptionCard({
       </CardContent>
       <CardActions sx={{ justifyContent: "center", marginBottom: 1 }}>
         <Link href={`/view-matches/${name}`}>
-          <Button size="large" variant="contained">
+          <Button size="large" variant="contained" color="secondary">
             View Matches
           </Button>
         </Link>

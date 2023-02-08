@@ -26,7 +26,7 @@ export default function NavBar(props: any) {
           <ArrowBackIcon sx={{ fontSize: "40px" }} />
         </IconButton>
       )}
-      <Typography variant="h3" component="h1">
+      <Typography variant="h3" component="h1" color={"primary.main"}>
         Upwork Job Matcher/Notification System
       </Typography>
       {showBackButton && (

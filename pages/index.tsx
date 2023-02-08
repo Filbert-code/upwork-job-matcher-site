@@ -28,7 +28,6 @@ export default function Home({
   return (
     <Box
       display="flex"
-      bgcolor={"navy"}
       width="100%"
       justifyContent="center"
       alignItems="center"

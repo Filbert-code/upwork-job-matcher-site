@@ -20,13 +20,17 @@ type JobMatchCardProps = {
 export default function JobMatchCard({ attribute_data }: JobMatchCardProps) {
   const data = attribute_data.M!!;
   return (
-    <Card>
+    <Card
+      sx={{
+        bgcolor: "primary.main",
+      }}
+    >
       <CardHeader></CardHeader>
       <CardContent>
         <Grid container>
           <Grid item xs={9} sm={10}>
             <Box>
-              <Typography variant="h3" color="black" marginBottom={1}>
+              <Typography variant="h3" color="mint.main" marginBottom={1}>
                 {data.job_data.M!!.title.S}
               </Typography>
               <Typography variant="h4" marginBottom={4}>
@@ -68,7 +72,7 @@ export default function JobMatchCard({ attribute_data }: JobMatchCardProps) {
           </Grid>
 
           <Grid item xs={3} sm={2}>
-            <Box bgcolor="primary.main" borderRadius="4px" padding={1}>
+            <Box bgcolor="secondary.main" borderRadius="4px" padding={1}>
               <Typography variant="h5" color="white">
                 Match Score: {data.overall_score.N}
               </Typography>
@@ -91,6 +95,7 @@ export default function JobMatchCard({ attribute_data }: JobMatchCardProps) {
           size="large"
           variant="contained"
           href={`${data.job_data.M!!.url.S}`}
+          sx={{ bgcolor: "mint.main", color: "primary.main" }}
         >
           View Posting
         </Button>

@@ -15,13 +15,15 @@ export default function ViewMatches({ data }: any) {
   console.log(data);
   const results = [...data.results.L!!].reverse();
   return (
-    <Box maxWidth={1500}>
-      <NavBar showBackButton={true} />
-      <Stack spacing={{ xs: 2, sm: 2, md: 4 }} width="100%">
-        {results.map((match: AttributeValue, i: Key | null | undefined) => {
-          return <JobMatchCard key={i} attribute_data={match} />;
-        })}
-      </Stack>
+    <Box display={"flex"} justifyContent="center">
+      <Box maxWidth={1500}>
+        <NavBar showBackButton={true} />
+        <Stack spacing={{ xs: 2, sm: 2, md: 4 }} width="100%">
+          {results.map((match: AttributeValue, i: Key | null | undefined) => {
+            return <JobMatchCard key={i} attribute_data={match} />;
+          })}
+        </Stack>
+      </Box>
     </Box>
   );
 }
